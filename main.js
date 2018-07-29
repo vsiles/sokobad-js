@@ -19,19 +19,54 @@ let map_width;
 let map_height;
 let map_data;
 
+let player_pos = {
+    x: 0,
+    y: 0
+};
+
+document.addEventListener("keypress", keyPressHandler, false);
+
+function keyPressHandler(e) {
+    switch (e.key) {
+        case "ArrowDown":
+            player_pos.y += 1;
+            break;
+        case "ArrowUp":
+            player_pos.y -= 1;
+            break;
+        case "ArrowLeft":
+            player_pos.x -= 1;
+            break;
+        case "ArrowRight":
+            player_pos.x += 1;
+            break;
+    }
+    // temp
+    draw_map();
+}
+
 function process_map(map)
 {
     map_width = map.width;
     map_height = map.height;
     map_data = map.map;
-    for (let i = 0; i < map_height; i++) {
-        let line = map_data[i];
-        map_data[i] = line;
+    for (let j = 0; j < map_height; j++) {
+        let line = map_data[j];
+        map_data[j] = line;
+
+        for (let i = 0; i < map_width; i++) {
+            let cell = line[i];
+            if (cell == 's') {
+                player_pos.x = i;
+                player_pos.y = j;
+            }
+        }
     }
 }
 
 function draw_map()
 {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let j = 0; j < map_height; j++) {
         for (let i = 0; i < map_width; i++) {
             let cell = map_data[j][i];
@@ -41,9 +76,10 @@ function draw_map()
                 case 'b': color = "#663300"; break;
                 case 'g': color = "#FFFF33"; break;
                 case 'x': color = "#000000"; break;
-                case 's': color = "#FF0000"; break; // TEMP
             }
             draw_cell(i, j, CELL_SIZE, color);
+            /* draw player */
+            draw_cell(player_pos.x, player_pos.y, CELL_SIZE, "#FF0000");
         }
     }
 }
