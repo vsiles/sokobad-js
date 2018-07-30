@@ -24,9 +24,11 @@ let player_pos = {
     y: 0
 };
 
-document.addEventListener("keypress", keyPressHandler, false);
+document.addEventListener("keydown", keyDownHandler, false);
 
-function keyPressHandler(e) {
+function keyDownHandler(e) {
+    // console.log(`key pressed: ${e.key}`);
+    // console.log(`key code: ${e.keyCode}`);
     switch (e.key) {
         case "ArrowDown":
             player_pos.y += 1;
